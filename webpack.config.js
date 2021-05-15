@@ -7,9 +7,7 @@ const webpackConfig = {
 		filename: "main.js",
 		path: path.resolve(__dirname, "dist")
 	},
-
-
-    module: {
+	module: {
 		rules: [
 			{
 				test: /\.js$/,
@@ -20,10 +18,14 @@ const webpackConfig = {
 						presets: ["@babel/preset-env"]
 					}
 				}
+			},
+			{
+				test: /\.css$/i,
+				use: ["style-loader", "css-loader"]
 			}
 		]
 	},
-    
+
 	mode: "production"
 };
 
