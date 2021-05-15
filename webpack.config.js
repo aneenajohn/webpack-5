@@ -8,7 +8,7 @@ const webpackConfig = {
     
     // 3.  add clean:true to output to keep the dist folder clean
 	output: {
-		filename: "[name].bundle.js",
+		filename: "[name].[contenthash].bundle.js",
 		path: path.resolve(__dirname, "dist"),
         clean: true
 	},
