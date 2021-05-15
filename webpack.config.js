@@ -8,7 +8,7 @@ const webpackConfig = {
     
     // 3.  add clean:true to output to keep the dist folder clean
 	output: {
-		filename: "main.js",
+		filename: "[name].bundle.js",
 		path: path.resolve(__dirname, "dist"),
         clean: true
 	},
@@ -32,7 +32,7 @@ const webpackConfig = {
 				test: /\.(png|svg|jpg|jpeg|gif)$/i,
 				type: "asset"
             }
-		]
+		],
 	},
     plugins: [
 		new HtmlWebpackPlugin({
@@ -40,6 +40,18 @@ const webpackConfig = {
 			template: path.resolve(__dirname, "src", "index.html")
 		})
 	],
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				node_vendors: {
+					name: "vendor",
+					test: /[\\/]node_modules[\\/]/,
+					chunks: "all",
+					priority: 1
+				}
+			}
+		}
+	},
 
 	mode: "production"
 };
