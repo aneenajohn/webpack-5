@@ -1,11 +1,16 @@
 const path = require("path");
+// 1.import 
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+// 2. add plugin in config
 const webpackConfig = {
 	entry: path.resolve(__dirname, "src", "index.js"),
-
+    
+    // 3.  add clean:true to output to keep the dist folder clean
 	output: {
 		filename: "main.js",
-		path: path.resolve(__dirname, "dist")
+		path: path.resolve(__dirname, "dist"),
+        clean: true
 	},
 	module: {
 		rules: [
@@ -29,6 +34,12 @@ const webpackConfig = {
             }
 		]
 	},
+    plugins: [
+		new HtmlWebpackPlugin({
+			title: "vanillaJS app",
+			template: path.resolve(__dirname, "src", "index.html")
+		})
+	],
 
 	mode: "production"
 };
